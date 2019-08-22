@@ -1,0 +1,21 @@
+<mat-card class="mt-2">
+    <h5 class="font-weight-bold">Note id - {{noteData.id}}</h5>
+    <p class="font-weight-bold">Note description:</p>
+    <p>{{noteData.description}}</p>
+    <ng-container *ngIf="haveTags">
+        <p class="font-weight-bold">Note tags:</p>
+        <div class="row m-0">
+            <a class="mr-2 text-primary" href="#" *ngFor="let tag of noteData.tags" (click)="search(tag)">
+                #{{ tag }}
+            </a>
+        </div>
+    </ng-container>
+    <div>
+        <button mat-button class="text-warning" title="Edit note" (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-button class="text-danger" title="Delete note" (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </div>
+</mat-card>

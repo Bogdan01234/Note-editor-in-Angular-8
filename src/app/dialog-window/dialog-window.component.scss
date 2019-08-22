@@ -1,0 +1,15 @@
+.fullWidth {
+  width: 100%;
+}
+
+textarea {
+  min-height: 5rem;
+}
+
+.success {
+  color: #28a745;
+}
+
+.success:disabled {
+  color: #28a7459e !important;
+}

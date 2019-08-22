@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <form [formGroup]="nodeForm">
+    <p>Enter note description:</p>
+    <mat-form-field class="fullWidth">
+      <textarea formControlName="description" matInput placeholder="Description"></textarea>
+    </mat-form-field>
+    <p>Tags note:</p>
+    <div class="row m-0">
+      <p *ngFor="let tag of nodeForm.get('tags').value" class="mr-2 text-primary"> #{{ tag }} </p>
+    </div>
+  </form>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button class="success" (click)="save()" [disabled]="nodeForm.invalid" cdkFocusInitial>Save</button>
+  <button mat-button class="text-danger" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

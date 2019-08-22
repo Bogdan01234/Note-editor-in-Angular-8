@@ -1,0 +1,29 @@
+<div class="container mt-2">
+    <mat-card>
+        <div>
+            <button mat-button (click)="openDialog()">Create a new note</button>
+        </div>
+        <div>
+            <mat-form-field class="example-chip-list">
+                <mat-chip-list #chipList aria-label="Fruit selection">
+                    <mat-chip *ngFor="let item of searchTagArray" [selectable]="selectable" [removable]="removable"
+                        (removed)="remove(item)">
+                        {{item}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input placeholder="Select tag..." #fruitInput [formControl]="noteCtrl" [matAutocomplete]="auto"
+                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur">
+                </mat-chip-list>
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                    <mat-option *ngFor="let note of filteredNotes | async" [value]="note">
+                        {{note}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+    </mat-card>
+    <note-card *ngFor="let item of viewArray| keyvalue" [noteData]='item.value' (deleteNode)="deleteNode($event)"
+        (editNode)="editNode($event)" (searchByTag)="searchByTag($event)">
+    </note-card>
+</div>
